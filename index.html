@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lead Form</title>
+  <style>
+    .logo {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #e3f2fd, #fce4ec);
+      padding: 20px;
+    }
+    h2 {
+      background-color: #007bff;
+      color: white;
+      padding: 15px;
+      border-radius: 50px;
+      text-align: center;
+      margin: 20px auto;
+      max-width: 500px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    form {
+      background-color: #e7f1ff;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .row {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .column {
+      flex: 1;
+      min-width: 300px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    .required::after {
+      content: " *";
+      color: red;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    .terms-container {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    .terms-container input {
+      width: auto;
+      margin-right: 10px;
+    }
+    input[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      margin-top: 20px;
+      padding: 10px 20px;
+      cursor: pointer;
+      width: 200px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 700px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .close {
+      float: right;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .terms-text {
+      max-height: 400px;
+      overflow-y: auto;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="logo-container">
+  <img src="https://ruby-speed-818--uniquesand.sandbox.my.salesforce.com/resource/WebtoLeadLogo" alt="Company Logo" class="logo">
+</div>
+
+<!-- Title -->
+<h2>Registration</h2>
+
+<form id="leadForm" action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Dbc000005j33i" method="POST">
+  <input type="hidden" name="oid" value="00Dbc000005j33i">
+  <input type="hidden" name="retURL" value="https://uniqueccs.com">
+
+  <div class="row">
+    <div class="column">
+      <label for="salutation" class="required">Salutation</label>
+      <select id="salutation" name="salutation" required>
+        <option value="">--None--</option>
+        <option value="Mr.">Mr.</option>
+        <option value="Ms.">Ms.</option>
+        <option value="Mrs.">Mrs.</option>
+        <option value="Dr.">Dr.</option>
+        <option value="Prof.">Prof.</option>
+        <option value="Mx.">Mx.</option>
+      </select>
+
+      <label for="first_name" class="required">First Name</label>
+      <input id="first_name" name="first_name" type="text" maxlength="40" required>
+
+      <label for="last_name" class="required">Last Name</label>
+      <input id="last_name" name="last_name" type="text" maxlength="80" required>
+
+      <label for="company" class="required">Company</label>
+      <input id="company" name="company" type="text" maxlength="40" required>
+
+      <label for="industry" class="required">Industry</label>
+      <select id="industry" name="industry" required>
+        <option value="">--None--</option>
+        <option value="Agriculture">Agriculture</option>
+        <option value="Apparel">Apparel</option>
+        <option value="Banking">Banking</option>
+        <option value="Biotechnology">Biotechnology</option>
+        <option value="Chemicals">Chemicals</option>
+        <option value="Communications">Communications</option>
+        <option value="Construction">Construction</option>
+        <option value="Consulting">Consulting</option>
+        <option value="Education">Education</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Energy">Energy</option>
+        <option value="Engineering">Engineering</option>
+        <option value="Entertainment">Entertainment</option>
+        <option value="Environmental">Environmental</option>
+        <option value="Finance">Finance</option>
+        <option value="Food &amp; Beverage">Food &amp; Beverage</option>
+        <option value="Government">Government</option>
+        <option value="Healthcare">Healthcare</option>
+        <option value="Hospitality">Hospitality</option>
+        <option value="Insurance">Insurance</option>
+        <option value="Machinery">Machinery</option>
+        <option value="Manufacturing">Manufacturing</option>
+        <option value="Media">Media</option>
+        <option value="Not For Profit">Not For Profit</option>
+        <option value="Other">Other</option>
+        <option value="Recreation">Recreation</option>
+        <option value="Retail">Retail</option>
+        <option value="Shipping">Shipping</option>
+        <option value="Technology">Technology</option>
+        <option value="Telecommunications">Telecommunications</option>
+        <option value="Transportation">Transportation</option>
+        <option value="Utilities">Utilities</option>
+      </select>
+
+      <label for="city" class="required">City</label>
+      <input id="city" name="city" type="text" maxlength="40" required>
+    </div>
+
+    <div class="column">
+      <label for="title" class="required">Title</label>
+      <input id="title" name="title" type="text" maxlength="40" required>
+
+      <label for="phone" class="required">Phone</label>
+      <input id="phone" name="phone" type="text" maxlength="40" required>
+
+      <label for="mobile" class="required">Mobile</label>
+      <input id="mobile" name="mobile" type="text" maxlength="40" required>
+
+      <label for="email" class="required">Email</label>
+      <input id="email" name="email" type="email" maxlength="80" required>
+
+      <label for="currency" class="required">Lead Currency</label>
+      <select id="currency" name="currency" required>
+        <option value="AED">AED - UAE Dirham</option>
+        <option value="USD" selected>USD - U.S. Dollar</option>
+      </select>
+
+      <label for="country" class="required">Country</label>
+      <input id="country" name="country" type="text" maxlength="40" required>
+    </div>
+  </div>
+
+  <!-- Terms and Conditions -->
+  <div class="terms-container">
+    <label>
+      <input type="checkbox" id="terms" name="terms" required>
+      I agree to the <a href="#" id="openTerms">Terms and Conditions</a>.
+    </label>
+  </div>
+
+  <input type="submit" name="submit" value="Submit">
+</form>
+<!-- Modal -->
+<div id="termsModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>UNIQUE COURIER CARGO SERVICES (UCCS) TERMS AND CONDITIONS</h3>
+    <div class="terms-text">
+      <h4>1. GENERAL APPLICABILITY</h4>
+      <p>These Terms and Conditions (“Terms”) shall apply to all services and assignments performed by Unique Courier Cargo Services (“UCCS”) unless expressly modified by written agreement. These Terms shall govern in conjunction with:</p>
+      <ul>
+        <li>Specific agreements entered into with the Customer;</li>
+        <li>Product-specific terms and conditions;</li>
+        <li>Applicable national and international laws and regulations (including but not limited to Federal Law No. 18 of 1993 (UAE Commercial Transactions Law), UAE Maritime Code, UAE Personal Data Protection Law, FMC, DOT, IATA, and Incoterms).</li>
+      </ul>
+      <p>In case of conflict between these documents, the following precedence applies (descending order): Specific agreements, Product terms, These Terms, Applicable laws.</p>
+
+      <h4>2. EXPORT CONTROL COMPLIANCE</h4>
+      <p>The Customer warrants compliance with all applicable export control, sanctions, and trade laws (“Export Laws”) and specifically represents that:</p>
+      <ul>
+        <li>Neither the Customer, any related party, agent, consignee, nor any third party involved in shipment delivery is listed on any denied/restricted party lists;</li>
+        <li>Shipment delivery, end-use, and end-user comply fully with Export Laws;</li>
+        <li>The Customer shall inform UCCS immediately if shipments are subject to sanctions or export/re-export restrictions;</li>
+        <li>All necessary governmental permits, licenses, and authorizations have been obtained. The Customer shall provide all relevant documentation to enable UCCS to comply with its legal obligations.</li>
+      </ul>
+
+      <h4>3. DANGEROUS GOODS (“DG”) HANDLING</h4>
+      <p>3.1 DG shipments must be declared fully and accurately, including classification, packaging, and labeling compliant with ADR, IATA DGR, RID, IMDG, and applicable UAE regulations.</p>
+      <p>3.2 UCCS reserves the right to refuse carriage or handling of improperly declared DG shipments or shipments not complying with applicable laws.</p>
+      <p>3.3 Carriage and warehousing of DG require prior written agreement and compliance with special laws governing such goods.</p>
+      <p>3.4 The Customer indemnifies and holds harmless UCCS against claims arising from inaccurate DG declaration or improper handling.</p>
+
+      <h4>4. CUSTOMER LIABILITY</h4>
+      <p>The Customer shall be liable for and shall indemnify UCCS against any loss, damage, costs, or claims arising from:</p>
+      <ul>
+        <li>Incorrect, unclear, or incomplete information provided to UCCS;</li>
+        <li>Improper packaging, marking, loading, or stowing of goods;</li>
+        <li>Hazardous or harmful properties of goods not reasonably foreseeable by UCCS;</li>
+        <li>Errors or omissions that result in duties, taxes, or security payments;</li>
+        <li>Negligence or misconduct by the Customer or their agents.</li>
+      </ul>
+      <p>UCCS shall not be liable for damages or claims resulting from such Customer-related breaches.</p>
+
+      <h4>5. TRANSPORT ASSIGNMENTS AND BOOKING</h4>
+      <p>5.1 Assignments are accepted upon UCCS’s approval and receipt of goods accompanied by correct shipping documentation.</p>
+      <p>5.2 Booking is subject to UCCS’s confirmation and any specific product or service conditions agreed upon.</p>
+      <p>5.3 UCCS reserves the right to reject or delay assignments based on incomplete information or non-compliance with terms.</p>
+
+      <h4>6. CLAIMS PROCEDURE</h4>
+      <p>6.1 Visible damage or loss must be reported immediately upon receipt and noted on the transport document or other proof of delivery, verified by a UCCS representative.</p>
+      <p>6.2 Hidden damages must be reported within seven (7) days for road or warehousing goods, fourteen (14) days for air cargo, and three (3) days for sea freight.</p>
+      <p>6.3 UCCS is not liable for damages discovered after these periods or for damages occurring outside its custody.</p>
+      <p>6.4 Claims related to delay must be submitted promptly and in accordance with applicable transport laws.</p>
+      <p>6.5 The Customer and consignee must take reasonable steps to minimize damage to goods.</p>
+
+      <h4>7. PAYMENT TERMS AND PRICE ADJUSTMENTS</h4>
+      <p>7.1 Payment shall be made within ten (10) days of invoice date unless otherwise agreed. Late payments incur penalty interest and collection fees, as per UAE Commercial Transactions Law.</p>
+      <p>7.2 The Customer remains liable for payment if a third party fails to pay.</p>
+      <p>7.3 UCCS reserves the right to request advance payments for perishable or high-risk goods.</p>
+      <p>7.4 Price adjustments may be made to reflect unforeseen increases in costs due to currency fluctuations, fuel price changes, labor disputes, new taxes or levies, or other factors outside UCCS’s control.</p>
+
+      <h4>8. VALIDITY AND TERMINATION OF AGREEMENTS</h4>
+      <p>8.1 Written tenders by UCCS are valid for thirty (30) days unless otherwise stated.</p>
+      <p>8.2 Agreements without a fixed term or termination clause require one (1) month’s written notice for termination, effective at the end of a calendar month.</p>
+      <p>8.3 Non-recurring, limited assignments remain valid until completion and fulfillment of obligations by both parties.</p>
+
+      <h4>9. INDEMNITY</h4>
+      <p>The Customer agrees to indemnify, defend, and hold harmless UCCS and its affiliates, officers, employees, and agents from any claims, liabilities, damages, costs, and expenses (including attorneys’ fees) arising from:</p>
+      <ul>
+        <li>Breach of these Terms by the Customer;</li>
+        <li>Activities related to the use of UCCS services or platform;</li>
+        <li>Violation of applicable laws or regulations;</li>
+        <li>Inaccuracies or errors in information supplied by the Customer;</li>
+        <li>Unauthorized use of UCCS services or information;</li>
+        <li>Failure to safeguard login credentials or confidential information.</li>
+      </ul>
+
+      <h4>10. TERMS OF CARRIAGE</h4>
+      <p>10.1 Sea Freight:</p>
+      <ul>
+        <li>The contract of carriage is governed by the issued Bill of Lading, applicable international conventions (such as Hague-Visby Rules), UAE Maritime Code, UCCS contracts, tariffs, and other relevant legal documents.</li>
+        <li>In case of conflict, contractual and legal documents prevail over transport documentation.</li>
+        <li>UCCS acts as carrier or agent according to the jurisdiction governing the shipment origin.</li>
+      </ul>
+      <p>10.2 Land Freight:</p>
+      <ul>
+        <li>The contract of carriage is governed by the consignment note, contracts, tariffs, and conventions such as the CMR Convention and UAE federal land transport regulations.</li>
+        <li>UCCS liability and terms shall be as stipulated in applicable contracts and laws.</li>
+        <li>By tendering goods to UCCS, the Customer agrees to these terms.</li>
+      </ul>
+
+      <h4>11. CANCELLATION, AMENDMENTS, AND SHIPMENT WEIGHT CHANGES</h4>
+      <p>11.1 Cancellation or Amendments:</p>
+      <ul>
+        <li>The Customer must provide written notice of cancellations or amendments at least forty-eight (48) hours before the scheduled pickup or shipment.</li>
+        <li>Cancellations or amendments received less than 48 hours prior may be subject to cancellation fees or partial/full freight charges.</li>
+        <li>UCCS reserves the right to reject last-minute amendments or cancellations within 24 hours of shipment.</li>
+      </ul>
+      <p>11.2 Shipment Date Changes: Any changes to shipment dates post-booking require UCCS approval and may incur additional fees.</p>
+      <p>11.3 Shipment Weight or Volume Changes: The Customer must accurately declare shipment weight and volume. If actual shipment details exceed declared amounts, UCCS may adjust charges accordingly or refuse carriage. Misdeclaration shall be considered a material breach and subject to indemnification obligations.</p>
+      <p>11.4 Liability: UCCS shall not be liable for losses or delays resulting from cancellations, amendments, or shipment changes. The Customer agrees to indemnify UCCS from any related claims, damages, or costs.</p>
+
+      <h4>12. MISCELLANEOUS</h4>
+      <p>These Terms constitute the entire agreement between the Customer and UCCS and supersede all prior agreements.</p>
+      <p>No waiver of any term shall be effective unless in writing signed by authorized representatives of both parties.</p>
+      <p>If any provision is held unenforceable, the remainder shall remain in full force.</p>
+      <p>Governing law and jurisdiction shall be the laws of the UAE, and any disputes shall be subject to the exclusive jurisdiction of the Courts of Dubai.</p>
+
+      <p><strong>By engaging UCCS’s services, the Customer agrees to be bound by these Terms and Conditions.</strong></p>
+    </div>
+  </div>
+</div>
+
+
+<script>
+document.getElementById("leadForm").addEventListener("submit", function(e) {
+    const terms = document.getElementById("terms");
+    if (!terms.checked) {
+        alert("You must agree to the Terms and Conditions before submitting.");
+        e.preventDefault();
+    }
+});
+
+// Modal open/close
+const modal = document.getElementById("termsModal");
+const openBtn = document.getElementById("openTerms");
+const closeBtn = document.querySelector(".close");
+
+openBtn.onclick = function(e) {
+  e.preventDefault();
+  modal.style.display = "block";
+}
+
+closeBtn.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
